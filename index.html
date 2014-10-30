@@ -24,12 +24,6 @@
 
 			#picker {
 				display:none;
-				margin:0;
-				padding:0;
-				border:0;
-				width:90px;
-				padding-left: 2px;
-				line-height:20px;
 			}
 			#picker2 > div {
 				margin: auto;
@@ -41,7 +35,7 @@
 				background-color: #FFF;
 			}
 			#form {
-				margin: 50px auto;
+				margin: 0 auto;
 				position: relative;
 				text-align: center;
 			}
@@ -60,13 +54,12 @@
 			<form id="changeLight">
 				<label for="fadestep">Umschaltzeit in Sekunden: </label>
 				<input name="fadestep" type="text" value="3"><br />
-				<label for="color">Farbe: </label>
-				<input name="color" type="text" value="003d69" id="picker"><br />
+				<input name="color" type="text" value="003d69" id="picker">
 				<div id="picker2"></div>
 				<input id="mode-flashy" name="mode" type="radio" value="y">
-				<label for="mode-flashy">Hektisch</label><br />
+				<label for="mode-flashy">Hektisch</label>
 				<input id="mode-instant" name="mode" type="radio" value="s" checked="checked">
-				<label for="mode-instant">Sofort</label><br />
+				<label for="mode-instant">Sofort</label>
 				<input id="mode-fade" name="mode" type="radio" value="f">
 				<label for="mode-fade">Geschmeidig</label><br />
 				<button type="submit" id="submit">Erhelle mich!</button>
