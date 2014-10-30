@@ -17,15 +17,28 @@
 				font-family: Blankenburg, sans-serif;
 				font-size: 36px;
 			}
+			#picker2 * {
+				font-family: sans-serif;
+				font-size: 15px !important;
+			}
 
 			#picker {
+				display:none;
 				margin:0;
 				padding:0;
 				border:0;
-				width:80px;
-				border-left:20px solid #003d69;
+				width:90px;
 				padding-left: 2px;
 				line-height:20px;
+			}
+			#picker2 > div {
+				margin: auto;
+				background-color: #FFF;
+				border: 0;
+			}
+			#picker2 .colpick_hex_field,
+			#picker2 .colpick_hex_field > div {
+				background-color: #FFF;
 			}
 			#form {
 				margin: 50px auto;
@@ -49,6 +62,7 @@
 				<input name="fadestep" type="text" value="3"><br />
 				<label for="color">Farbe: </label>
 				<input name="color" type="text" value="003d69" id="picker"><br />
+				<div id="picker2"></div>
 				<input id="mode-flashy" name="mode" type="radio" value="y">
 				<label for="mode-flashy">Hektisch</label><br />
 				<input id="mode-instant" name="mode" type="radio" value="s" checked="checked">
@@ -59,19 +73,20 @@
 			</form>
 		</div>
 		<script type="text/javascript">
-			$('#picker').colpick({
+			$('#picker2').colpick({
 				layout:'hex',
 				submit:0,
 				colorScheme:'light',
+				flat: true,
+				color: '003d69',
 				onChange:function(hsb,hex,rgb,el,bySetColor) {
-					$(el).css('border-color','#'+hex);
 					// Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
-					if(!bySetColor) $(el).val(hex);
+					if(!bySetColor) $('#picker').val(hex);
 				}
 			}).keyup(function(){
 				$(this).colpickSetColor(this.value);
-			})
-			$('#changeLight').submit(function(event) {
+			});
+			var callback = function(event) {
 				event.preventDefault();
 				var data = $(this).serializeArray(),
 					values = [];
@@ -81,7 +96,9 @@
 				};
 
 				$.get('color.php' ,{'value': values['color'], 'mode': values['mode'], 'fadestep': values['fadestep']});
-			});
+			};
+			$('#changeLight').submit(callback);
+			$('#submit').on('click,enter', callback);
 		</script>
 	</body>
 </html>
