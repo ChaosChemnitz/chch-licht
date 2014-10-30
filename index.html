@@ -53,14 +53,14 @@
 		<div id="form">
 			<form id="changeLight">
 				<label for="fadestep">Umschaltzeit in Sekunden: </label>
-				<input name="fadestep" type="text" value="3"><br />
+				<input name="fadestep" type="text" value="10"><br />
 				<input name="color" type="text" value="003d69" id="picker">
 				<div id="picker2"></div>
 				<input id="mode-flashy" name="mode" type="radio" value="y">
 				<label for="mode-flashy">Hektisch</label>
-				<input id="mode-instant" name="mode" type="radio" value="s" checked="checked">
+				<input id="mode-instant" name="mode" type="radio" value="s">
 				<label for="mode-instant">Sofort</label>
-				<input id="mode-fade" name="mode" type="radio" value="f">
+				<input id="mode-fade" name="mode" type="radio" value="f" checked="checked">
 				<label for="mode-fade">Geschmeidig</label><br />
 				<button type="submit" id="submit">Erhelle mich!</button>
 			</form>
@@ -71,7 +71,7 @@
 				submit:0,
 				colorScheme:'light',
 				flat: true,
-				color: '003d69',
+				color: 'ab571f',
 				onChange:function(hsb,hex,rgb,el,bySetColor) {
 					// Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
 					if(!bySetColor) $('#picker').val(hex);
