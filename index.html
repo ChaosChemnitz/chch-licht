@@ -9,57 +9,53 @@
 		<script type="text/javascript" src="js/colpick/js/colpick.js"></script>
 		<link rel="stylesheet" href="js/colpick/css/colpick.css" />
 		<style type="text/css">
-			@font-face {
-				font-family: 'Satisfy';
-				font-style: normal;
-				font-weight: 400;
-				src: local('Satisfy'), url(https://fonts.gstatic.com/s/satisfy/v6/ch7X2unYkww0EzsjlC3m8w.woff) format('woff');
+			@font-face{
+				font-family:"Blankenburg";
+				src:url('font/Blankenburg.ttf') format("truetype");
 			}
 			* {
-				font-family: Satisfy, sans-serif;
+				font-family: Blankenburg, sans-serif;
+				font-size: 36px;
 			}
 
 			#picker {
 				margin:0;
 				padding:0;
 				border:0;
-				width:70px;
-				height:20px;
+				width:80px;
 				border-left:20px solid #003d69;
 				padding-left: 2px;
 				line-height:20px;
 			}
 			#form {
-				width: 300px;
 				margin: 50px auto;
 				position: relative;
-				border: 1px solid #000;
-				border-radius: 2px;
-				padding: 5px;
-				font-family:
+				text-align: center;
 			}
 			input[name=fadestep] {
-				width: 20px;
+				width: 40px;
 			}
-			#submit {
-
+			h1 {
+				text-align: center;
+				font-size: 64px;
 			}
 		</style>
 	</head>
 	<body>
+		<h1>Leuchtmittelhauptsteuerung</h1>
 		<div id="form">
 			<form id="changeLight">
-				<label for="fadestep">fade step (in seconds): </label>
+				<label for="fadestep">Umschaltzeit in Sekunden: </label>
 				<input name="fadestep" type="text" value="3"><br />
-				<label for="color">choose a color: </label>
+				<label for="color">Farbe: </label>
 				<input name="color" type="text" value="003d69" id="picker"><br />
 				<input id="mode-flashy" name="mode" type="radio" value="y">
-				<label for="mode-flashy">flashy</label><br />
+				<label for="mode-flashy">Hektisch</label><br />
 				<input id="mode-instant" name="mode" type="radio" value="s" checked="checked">
-				<label for="mode-instant">instant</label><br />
+				<label for="mode-instant">Sofort</label><br />
 				<input id="mode-fade" name="mode" type="radio" value="f">
-				<label for="mode-fade">fade</label><br />
-				<button type="submit" id="submit">Submit</button>
+				<label for="mode-fade">Geschmeidig</label><br />
+				<button type="submit" id="submit">Erhelle mich!</button>
 			</form>
 		</div>
 		<script type="text/javascript">
