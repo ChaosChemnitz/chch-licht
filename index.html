@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+		<title>chch-licht</title>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/colpick/js/colpick.js"></script>
+		<link rel="stylesheet" href="js/colpick/css/colpick.css" />
+		<style type="text/css">
+			#picker {
+				margin:0;
+				padding:0;
+				border:0;
+				width:70px;
+				height:20px;
+				border-right:20px solid #003d69;
+				line-height:20px;
+			}
+			#form {
+				width: 300px;
+				margin: 50px auto;
+				position: relative;
+				border: 1px solid #000;
+				border-radius: 2px;
+				padding: 5px;
+			}
+			input[name=fadestep] {
+				width: 20px;
+			}
+			#submit {
+
+			}
+		</style>
+	</head>
+	<body>
+		<div id="form">
+			<form id="changeLight">
+				<label for="fadestep">fade step (in seconds): </label>
+				<input name="fadestep" type="text" value="3"><br />
+				<label for="color">choose a color: </label>
+				<input name="color" type="text" value="003d69" id="picker"><br />
+				<input id="mode-flashy" name="mode" type="radio" value="y">
+				<label for="mode-flashy">flashy</label><br />
+				<input id="mode-instant" name="mode" type="radio" value="s" checked="checked">
+				<label for="mode-instant">instant</label><br />
+				<input id="mode-fade" name="mode" type="radio" value="f">
+				<label for="mode-fade">fade</label><br />
+				<button type="submit" id="submit">Submit</button>
+			</form>
+		</div>
+		<script type="text/javascript">
+			$('#picker').colpick({
+				layout:'hex',
+				submit:0,
+				colorScheme:'light',
+				onChange:function(hsb,hex,rgb,el,bySetColor) {
+					$(el).css('border-color','#'+hex);
+					// Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
+					if(!bySetColor) $(el).val(hex);
+				}
+			}).keyup(function(){
+				$(this).colpickSetColor(this.value);
+			})
+			$('#changeLight').submit(function(event) {
+				event.preventDefault();
+				var data = $(this).serializeArray(),
+					values = [];
+
+				for (var i = 0; i < data.length; i++) {
+					values[data[i]['name']] = data[i]['value'];
+				};
+
+				$.get('/color.php' ,{'value': values['color'], 'mode': values['mode'], 'fadestep': values['fadestep']});
+			});
+		</script>
+	</body>
+</html>
