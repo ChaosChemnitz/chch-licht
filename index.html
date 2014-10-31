@@ -62,6 +62,8 @@
 				<label for="mode-instant">Sofort</label>
 				<input id="mode-fade" name="mode" type="radio" value="f" checked="checked">
 				<label for="mode-fade">Geschmeidig</label><br />
+				<input id="mode-stromstoss" name="stromstoss" type="checkbox" value="1">
+				<label for="mode-stromstoss">Stromstoß</label><br />
 				<button type="submit" id="submit">Erhelle mich!</button>
 			</form>
 		</div>
@@ -88,7 +90,7 @@
 					values[data[i]['name']] = data[i]['value'];
 				};
 
-				$.get('color.php' ,{'value': values['color'], 'mode': values['mode'], 'fadestep': values['fadestep']});
+				$.get('color.php' ,{'value': values['color'], 'mode': values['mode'], 'fadestep': values['fadestep'], 'stromstoss': values['stromstoss']});
 			};
 			$('#changeLight').submit(callback);
 			$('#submit').on('click,enter', callback);

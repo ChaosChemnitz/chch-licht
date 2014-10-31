@@ -22,6 +22,11 @@ if(!in_array($mode, ['s', 'y', 'f'])) {
 	$mode = 's';
 }
 
+$stromstoss = $_GET['stromstoss'];
+if(!$stromstoss==1) {
+        $stromstoss = 0;
+}
+
 $red = hexdec(substr($value, 0, 2));
 $green = hexdec(substr($value, 2, 2));
 $blue = hexdec(substr($value, 4, 2));
@@ -35,6 +40,12 @@ $step = intval($_GET['fadestep']);
 if(is_int($step)) {
 	echo http_response($ch, $baseUrl . 'fadestep' . '%20' . $step);
 	echo "\n";
+}
+
+if($stromstoss==0) {
+	$red=$red;
+	$green=$green*200/255;
+	$blue=$blue*128/255;
 }
 
 echo $url . '5' . '%20' . $red . '%20' . $mode . "\n";
